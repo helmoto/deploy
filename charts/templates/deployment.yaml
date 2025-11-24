@@ -31,8 +31,10 @@ spec:
     spec:
       {{- with .Values.image.secrets }}
       imagePullSecrets:
-        {{- range $secret := .Values.image.secrets }}
-          {{- $secret }}
+        {{- range $secret, $enabled := .Values.image.secrets }}
+          {{- if eq $enabled "true" }}
+            - {{ $secret }}
+          {{- end }}
         {{- end }}
       {{- end }}
       {{- with .Values.pod.securityContext }}

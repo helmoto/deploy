@@ -18,7 +18,7 @@ image:
   repository: "nginx"
   tag: "latest"
   policy: "IfNotPresent"
-  secrets: []
+  secrets: {}
 
 
 # 部署
