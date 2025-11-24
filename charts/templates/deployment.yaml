@@ -29,7 +29,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
     spec:
-      {{- with .Values.image.secrets }}
+      {{- if .Values.image.secrets }}
       imagePullSecrets:
         {{- range $secret, $enabled := .Values.image.secrets }}
           {{- if eq $enabled "true" }}
