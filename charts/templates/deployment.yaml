@@ -37,10 +37,12 @@ spec:
           {{- end }}
         {{- end }}
       {{- end }}
+
       {{- with .Values.pod.securityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+
       containers:
         - name: {{ .Values.name }}
           image: "{{- if .Values.image.registry }}{{ .Values.image.registry }}/{{- end }}{{ .Values.image.repository }}:{{ .Values.image.tag }}"
