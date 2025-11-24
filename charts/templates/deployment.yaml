@@ -33,7 +33,7 @@ spec:
       imagePullSecrets:
         {{- range $secret, $enabled := .Values.image.secrets }}
           {{- if $enabled }}
-            - {{ $secret }}
+            - {{ $secret | quote }}
           {{- end }}
         {{- end }}
       {{- end }}
