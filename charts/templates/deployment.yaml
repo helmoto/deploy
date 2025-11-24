@@ -31,7 +31,9 @@ spec:
     spec:
       {{- with .Values.image.secrets }}
       imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
+        {{- range $secret := .Values.image.secrets }}
+          {{- $secret }}
+        {{- end }}
       {{- end }}
       {{- with .Values.pod.securityContext }}
       securityContext:
