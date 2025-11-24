@@ -1,5 +1,5 @@
 enabled: true # 是否开启，在不开启的情况下，不会部署
-name: "mian" # 容器名字
+name: "main" # 容器名字
 qualifier: ""
 namespace: "default"
 command: []
