@@ -3,6 +3,16 @@ entries:
   deploy:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2025-12-18T04:32:32.165489336Z"
+    description: 通用的部署应用，支持动态水平扩展功能
+    digest: e44d9222195a57f5ffd7e7aa192919666c72d983a73fd01a65a5d5843d563c5e
+    name: deploy
+    type: application
+    urls:
+    - https://github.com/helmoto/deploy/releases/download/deploy-0.2.6/deploy-0.2.6.tgz
+    version: 0.2.6
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2025-11-24T11:13:31.186153797Z"
     description: 通用的部署应用，支持动态水平扩展功能
     digest: b447e8fdc6b23e583a80c41ef4de7e30d9ee476f1d4b8bb05d642c8688109475
@@ -251,4 +261,4 @@ entries:
     urls:
     - https://github.com/helmoto/deploy/releases/download/deploy-0.0.1/deploy-0.0.1.tgz
     version: 0.0.1
-generated: "2025-11-24T11:13:31.186380401Z"
+generated: "2025-12-18T04:32:32.165740024Z"
