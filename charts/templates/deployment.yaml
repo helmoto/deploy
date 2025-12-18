@@ -53,10 +53,14 @@ spec:
           args:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+
           ports:
-            - name: http
-              containerPort: {{ .Values.port }}
-              protocol: TCP
+            {{- range .Values.ports }}
+            - name: {{ .name }}
+              containerPort: {{ .source }}
+              protocol: {{ .protocol }}
+            {{- end }}
+
           {{- with .Values.env }}
           env:
             {{- range $key, $value := . }}
@@ -68,10 +72,12 @@ spec:
           envFrom:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+
           {{- with .Values.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+
           {{- if .Values.probe.liveness.enabled }}
           livenessProbe:
             {{- omit .Values.probe.liveness "enabled" | toYaml | nindent 12 }}

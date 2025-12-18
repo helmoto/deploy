@@ -12,10 +12,12 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: {{ .Values.service.targetPort }}
-      protocol: TCP
-      name: http
+    {{- range .Values.ports }}
+    - name: {{ .name }}
+      port: {{ .source }}
+      targetPort: {{ .target }}
+      protocol: {{ .protocol }}
+    {{- end }}
   selector:
     {{- include "deploy.selectorLabels" . | nindent 4 }}
 {{- end }}

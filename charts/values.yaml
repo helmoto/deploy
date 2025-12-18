@@ -6,7 +6,11 @@ command: []
 args: []
 env: {}
 envFrom: []
-port: 80
+ports:
+  - source: 80 # 默认开放80端口
+    target: 80
+    protocol: TCP
+    name: http
 replicas: 1
 context:
   security: {}
@@ -61,17 +65,16 @@ probe:
     periodSeconds: 5
     timeoutSeconds: 3
 
+
 # 服务配置
 service:
   enabled: true
   type: "ClusterIP"
-  port: 80
-  targetPort: 80
   annotations: {}
   account: # 服务账户
     enabled: false
     name: ""
-    annotations: { }
+    annotations: {}
 
 
 # 自动伸缩
