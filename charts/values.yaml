@@ -39,11 +39,10 @@ deployment:
 resources:
   requests:
     cpu: "500m"
-    memory: "512Mi"
+    memory: "256Mi"
   limits:
     cpu: "2000m"
     memory: "2048Mi"
-
 
 
 # 健康检查
@@ -122,7 +121,7 @@ ingress:
 
 
 # 配置
-configmap:
+config:
   enabled: false
   data: {}
 
@@ -137,7 +136,7 @@ secret:
 persistence:
   enabled: false
   accessMode: "ReadWriteOnce"
-  size: "10Gi"
+  size: "1Gi"
   storageClass: ""
   mountPath: "/data"
 
