@@ -38,8 +38,8 @@ deployment:
 # 资源
 resources:
   requests:
-    cpu: "100m"
-    memory: "128Mi"
+    cpu: "1000m"
+    memory: "1024Mi"
   limits:
     cpu: "1000m"
     memory: "1024Mi"
