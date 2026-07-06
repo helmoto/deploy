@@ -41,7 +41,7 @@ helm.sh/chart: {{ include "deploy.chart" . }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed: {{ .Release.Service }}
-app.kubernetes.io/stage: {{ .Values.stage }}
+app.kubernetes.io/mode: {{ .Values.mode }}
 {{- end }}
 
 
