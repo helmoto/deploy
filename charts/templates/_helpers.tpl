@@ -50,6 +50,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- define "deploy.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "deploy.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+app: {{ .Release.Name }}
 {{- end }}
 
 
