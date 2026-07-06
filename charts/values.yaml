@@ -5,6 +5,7 @@ namespace: "default"
 command: []
 args: []
 mode: "default"
+labels: {} # 通用标签
 
 env:
   value: {}
