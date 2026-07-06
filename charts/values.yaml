@@ -4,13 +4,21 @@ qualifier: ""
 namespace: "default"
 command: []
 args: []
-env: {}
-envFrom: []
+stage: "default"
+
+env:
+  value: {}
+  from: []
+environment: # 别名
+  value: {}
+  from: []
+
 ports:
-  - source: 80 # 默认开放80端口
+  - source: 80 # 默认开放端口
     target: 80
     protocol: TCP
     name: http
+
 replicas: 1
 context:
   security: {}
@@ -145,9 +153,9 @@ persistence:
 pod:
   annotations: {}
   labels: {}
-  securityContext: {}
+  security: {}
   affinity: {}
-  nodeSelector: {}
+  selector: {}
   tolerations: []
 
 
