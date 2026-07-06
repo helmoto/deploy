@@ -42,8 +42,7 @@ app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed: {{ .Release.Service }}
 app.kubernetes.io/mode: {{ .Values.mode }}
-{{- with .Values.labels }}
-{{- range $key, $value := . }}
+{{- range $key, $value := .Values.labels }}
 {{ $key }}: {{ $value }}
 {{- end }}
 {{- end }}
