@@ -41,7 +41,6 @@ helm.sh/chart: {{ include "deploy.chart" . }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed: {{ .Release.Service }}
-app.kubernetes.io/mode: {{ .Values.mode }}
 {{- range $key, $value := .Values.labels }}
 {{ $key }}: {{ $value }}
 {{- end }}
@@ -54,6 +53,7 @@ app.kubernetes.io/mode: {{ .Values.mode }}
 {{- define "deploy.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "deploy.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/mode: {{ .Values.mode }}
 {{- end }}
 
 
