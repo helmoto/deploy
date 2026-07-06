@@ -2,7 +2,7 @@
 名称
 */}}
 {{- define "deploy.name" -}}
-{{- default .Chart.Name .Values.name | trunc 63 | trimSuffix "-" }}
+{{- default .Chart.Name .Values.qualifier | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 
