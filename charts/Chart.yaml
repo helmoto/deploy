@@ -1,6 +1,6 @@
 apiVersion: v2
 name: deploy
-description: 通用的部署应用，支持动态水平扩展功能
+description: 通用的部署应用，支持动态水平扩展功能。
 type: application
 version: 0.4.1
 appVersion: "1.0.1"
