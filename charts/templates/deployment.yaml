@@ -29,6 +29,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
     spec:
+      terminationGracePeriodSeconds: {{ .Values.pre.stop.period }}
       {{- with .Values.image.secrets }}
       imagePullSecrets:
       {{- range $.Values.image.secrets }}
@@ -45,6 +46,10 @@ spec:
         - name: {{ .Values.name }}
           image: "{{- if .Values.image.registry }}{{ .Values.image.registry }}/{{- end }}{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.policy }}
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/sh", "-c", "sleep {{ .Values.pre.stop.sleep }}"]
           {{- with .Values.command }}
           command:
             {{- toYaml . | nindent 12 }}
@@ -80,11 +85,15 @@ spec:
 
           {{- if .Values.probe.liveness.enabled }}
           livenessProbe:
-            {{- omit .Values.probe.liveness "enabled" | toYaml | nindent 12 }}
+            {{- omit .Values.probe.liveness "enabled" "http" | toYaml | nindent 12 }}
+            httpGet:
+              {{- omit .Values.probe.liveness.http "method" | toYaml | nindent 14 }}
           {{- end }}
           {{- if .Values.probe.readiness.enabled }}
           readinessProbe:
-            {{- omit .Values.probe.readiness "enabled" | toYaml | nindent 12 }}
+            {{- omit .Values.probe.readiness "enabled" "http" | toYaml | nindent 12 }}
+            httpGet:
+              {{- omit .Values.probe.readiness.http "method" | toYaml | nindent 14 }}
           {{- end }}
           {{- with .Values.context.security }}
           securityContext:

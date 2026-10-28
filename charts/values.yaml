@@ -1,10 +1,10 @@
 enabled: true # 是否开启，在不开启的情况下，不会部署
-name: "main" # 容器名字
-qualifier: ""
-namespace: "default"
+name: 'main' # 容器名字
+qualifier: ''
+namespace: 'default'
 command: []
 args: []
-mode: "default"
+mode: 'default'
 labels: {} # 通用标签
 
 env:
@@ -24,66 +24,68 @@ replicas: 1
 context:
   security: {}
 
-
 # 镜像
 image:
-  registry: ""
-  repository: "nginx"
-  tag: "latest"
-  policy: "IfNotPresent"
+  registry: ''
+  repository: 'nginx'
+  tag: 'latest'
+  policy: 'IfNotPresent'
   secrets: {}
-
 
 # 部署
 deployment:
   strategy:
-    type: "RollingUpdate"
+    type: 'RollingUpdate'
     rollingUpdate:
       maxSurge: 25%
       maxUnavailable: 25%
   revisionHistoryLimit: 3
 
-
 # 资源
 resources:
   requests:
-    cpu: "500m"
-    memory: "64Mi"
+    cpu: '500m'
+    memory: '64Mi'
   limits:
-    cpu: "2000m"
-    memory: "2048Mi"
-
+    cpu: '2000m'
+    memory: '2048Mi'
 
 # 健康检查
 probe:
   liveness:
-    enabled: false
-    httpGet:
-      path: "/health"
+    enabled: true
+    http:
+      path: '/health'
       port: 80
+      method: get
     initialDelaySeconds: 30
     periodSeconds: 10
     timeoutSeconds: 5
   readiness:
-    enabled: false
-    httpGet:
-      path: "/ready"
+    enabled: true
+    http:
+      path: '/ready'
       port: 80
+      method: get
     initialDelaySeconds: 5
     periodSeconds: 5
     timeoutSeconds: 3
 
+# 拉长优雅期
+pre:
+  stop:
+    period: 600 # 终止宽限期（秒）
+    sleep: 10 # preStop 等待时间（秒）
 
 # 服务配置
 service:
   enabled: true
-  type: "ClusterIP"
+  type: 'ClusterIP'
   annotations: {}
   account: # 服务账户
     enabled: false
-    name: ""
+    name: ''
     annotations: {}
-
 
 # 自动伸缩
 autoscale:
@@ -115,40 +117,35 @@ autoscale:
           value: 100
           periodSeconds: 15
 
-
 # 路径
 ingress:
   enabled: false
-  className: ""
+  className: ''
   hosts:
-    - host: "app.example.com"
+    - host: 'app.example.com'
       paths:
-        - path: "/"
-          pathType: "Prefix"
+        - path: '/'
+          pathType: 'Prefix'
   tls: []
   annotations: {}
-
 
 # 配置
 config:
   enabled: false
   data: {}
 
-
 # 加密配置
 secret:
   enabled: false
   data: {}
 
-
 # 持久化存储
 persistence:
   enabled: false
-  accessMode: "ReadWriteOnce"
-  size: "1Gi"
-  storageClass: ""
-  mountPath: "/data"
-
+  accessMode: 'ReadWriteOnce'
+  size: '1Gi'
+  storageClass: ''
+  mountPath: '/data'
 
 # 副本
 pod:
@@ -159,14 +156,12 @@ pod:
   selector: {}
   tolerations: []
 
-
 pdb:
   enabled: false
   minAvailable: 1
-  maxUnavailable: ""
-
+  maxUnavailable: ''
 
 test: # 测试数据
   enabled: true
-  image: "busybox:latest"
-  command: ["wget", "--spider", "http://localhost:80/health"]
+  image: 'busybox:latest'
+  command: ['wget', '--spider', 'http://localhost:80/health']
