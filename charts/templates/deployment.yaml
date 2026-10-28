@@ -87,13 +87,13 @@ spec:
           livenessProbe:
             {{- omit .Values.probe.liveness "enabled" "http" | toYaml | nindent 12 }}
             httpGet:
-              {{- omit .Values.probe.liveness.http "method" | toYaml | nindent 14 }}
+              {{- toYaml .Values.probe.liveness.http | nindent 14 }}
           {{- end }}
           {{- if .Values.probe.readiness.enabled }}
           readinessProbe:
             {{- omit .Values.probe.readiness "enabled" "http" | toYaml | nindent 12 }}
             httpGet:
-              {{- omit .Values.probe.readiness.http "method" | toYaml | nindent 14 }}
+              {{- toYaml .Values.probe.readiness.http | nindent 14 }}
           {{- end }}
           {{- with .Values.context.security }}
           securityContext:

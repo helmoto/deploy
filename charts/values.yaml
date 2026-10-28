@@ -57,7 +57,6 @@ probe:
     http:
       path: '/health'
       port: 80
-      method: get
     initialDelaySeconds: 30
     periodSeconds: 10
     timeoutSeconds: 5
@@ -66,7 +65,6 @@ probe:
     http:
       path: '/ready'
       port: 80
-      method: get
     initialDelaySeconds: 5
     periodSeconds: 5
     timeoutSeconds: 3
